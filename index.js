@@ -27,7 +27,7 @@ var QUESTIONS = [{
 }
 ];
 
-var SUBMISSONS = [];
+var SUBMISSONS = [0, 12];
 
 const SECRETKEY = 'leetcode-clone-key';
 
