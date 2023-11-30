@@ -145,7 +145,7 @@ app.get('/questions', verifyToken, (req, res) => {
 app.get("/submissions", (req, res) => {
     // return the users submissions for this problem
     let email = req.user? req.user.email : null;
-    
+
     let result = [];
     for (let submission in SUBMISSONS) {
 
