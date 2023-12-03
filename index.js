@@ -1,8 +1,10 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const cors = require('cors')
 
 const app = express();
 app.use(express.json())
+app.use(cors())
 
 const port = 3000;
 
@@ -15,7 +17,9 @@ var QUESTIONS = [{
     testCases: [{
         input: "[1,2,3,4,5]",
         output: "5"
-    }]
+    }],
+    difficulty: "Easy",
+    acceptance: "89%"
 },
 
 {
@@ -25,7 +29,86 @@ var QUESTIONS = [{
     testCases: [{
         input: "[1,2,3,4,5]",
         output: "5"
-    }]
+    }],
+    difficulty: "Medium",
+    acceptance: "42%"
+},
+{
+    id: 3,
+    title: "Two states",
+    description: "Given an array , return the maximum of the array?",
+    testCases: [{
+        input: "[1,2,3,4,5]",
+        output: "5"
+    }],
+    difficulty: "Medium",
+    acceptance: "42%"
+},
+{
+    id: 2,
+    title: "Two states",
+    description: "Given an array , return the maximum of the array?",
+    testCases: [{
+        input: "[1,2,3,4,5]",
+        output: "5"
+    }],
+    difficulty: "Medium",
+    acceptance: "42%"
+},
+{
+    id: 2,
+    title: "Two states",
+    description: "Given an array , return the maximum of the array?",
+    testCases: [{
+        input: "[1,2,3,4,5]",
+        output: "5"
+    }],
+    difficulty: "Medium",
+    acceptance: "42%"
+},
+{
+    id: 2,
+    title: "Two states",
+    description: "Given an array , return the maximum of the array?",
+    testCases: [{
+        input: "[1,2,3,4,5]",
+        output: "5"
+    }],
+    difficulty: "Medium",
+    acceptance: "42%"
+},
+{
+    id: 2,
+    title: "Two states",
+    description: "Given an array , return the maximum of the array?",
+    testCases: [{
+        input: "[1,2,3,4,5]",
+        output: "5"
+    }],
+    difficulty: "Medium",
+    acceptance: "42%"
+},
+{
+    id: 2,
+    title: "Two states",
+    description: "Given an array , return the maximum of the array?",
+    testCases: [{
+        input: "[1,2,3,4,5]",
+        output: "5"
+    }],
+    difficulty: "Medium",
+    acceptance: "42%"
+},
+{
+    id: 2,
+    title: "Two states",
+    description: "Given an array , return the maximum of the array?",
+    testCases: [{
+        input: "[1,2,3,4,5]",
+        output: "5"
+    }],
+    difficulty: "Easy",
+    acceptance: "86%"
 }
 ];
 
@@ -199,7 +282,9 @@ app.post("/addQuestions", verifyToken, (req, res) => {
         id: QUESTIONS.length,
         title: params.title,
         description: params.description,
-        testCases: params.testCases
+        testCases: params.testCases,
+        difficulty: params.difficulty,
+        acceptance: params.acceptance
     })
     res.status(200).json({
         message: "Submitted!"
