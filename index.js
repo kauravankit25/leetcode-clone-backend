@@ -19,7 +19,13 @@ var QUESTIONS = [{
         output: "5"
     }],
     difficulty: "Easy",
-    acceptance: "89%"
+    acceptance: "89%",
+    constraints: [
+        "2 <= nums.length <= 104",
+        "-109 <= nums[i] <= 109",
+        "-109 <= target <= 109",
+        "Only one valid answer exists."
+    ]
 },
 
 {
@@ -31,7 +37,13 @@ var QUESTIONS = [{
         output: "5"
     }],
     difficulty: "Medium",
-    acceptance: "42%"
+    acceptance: "42%",
+    constraints: [
+        "2 <= nums.length <= 104",
+        "-109 <= nums[i] <= 109",
+        "-109 <= target <= 109",
+        "Only one valid answer exists."
+    ]
 },
 {
     id: 3,
@@ -42,7 +54,13 @@ var QUESTIONS = [{
         output: "5"
     }],
     difficulty: "Medium",
-    acceptance: "42%"
+    acceptance: "42%",
+    constraints: [
+        "2 <= nums.length <= 104",
+        "-109 <= nums[i] <= 109",
+        "-109 <= target <= 109",
+        "Only one valid answer exists."
+    ]
 },
 {
     id: 2,
@@ -53,7 +71,13 @@ var QUESTIONS = [{
         output: "5"
     }],
     difficulty: "Medium",
-    acceptance: "42%"
+    acceptance: "42%",
+    constraints: [
+        "2 <= nums.length <= 104",
+        "-109 <= nums[i] <= 109",
+        "-109 <= target <= 109",
+        "Only one valid answer exists."
+    ]
 },
 {
     id: 2,
@@ -64,7 +88,13 @@ var QUESTIONS = [{
         output: "5"
     }],
     difficulty: "Medium",
-    acceptance: "42%"
+    acceptance: "42%",
+    constraints: [
+        "2 <= nums.length <= 104",
+        "-109 <= nums[i] <= 109",
+        "-109 <= target <= 109",
+        "Only one valid answer exists."
+    ]
 },
 {
     id: 2,
@@ -75,7 +105,13 @@ var QUESTIONS = [{
         output: "5"
     }],
     difficulty: "Medium",
-    acceptance: "42%"
+    acceptance: "42%",
+    constraints: [
+        "2 <= nums.length <= 104",
+        "-109 <= nums[i] <= 109",
+        "-109 <= target <= 109",
+        "Only one valid answer exists."
+    ]
 },
 {
     id: 2,
@@ -86,7 +122,13 @@ var QUESTIONS = [{
         output: "5"
     }],
     difficulty: "Medium",
-    acceptance: "42%"
+    acceptance: "42%",
+    constraints: [
+        "2 <= nums.length <= 104",
+        "-109 <= nums[i] <= 109",
+        "-109 <= target <= 109",
+        "Only one valid answer exists."
+    ]
 },
 {
     id: 2,
@@ -97,7 +139,13 @@ var QUESTIONS = [{
         output: "5"
     }],
     difficulty: "Medium",
-    acceptance: "42%"
+    acceptance: "42%",
+    constraints: [
+        "2 <= nums.length <= 104",
+        "-109 <= nums[i] <= 109",
+        "-109 <= target <= 109",
+        "Only one valid answer exists."
+    ]
 },
 {
     id: 2,
@@ -108,7 +156,13 @@ var QUESTIONS = [{
         output: "5"
     }],
     difficulty: "Easy",
-    acceptance: "86%"
+    acceptance: "86%",
+    constraints: [
+        "2 <= nums.length <= 104",
+        "-109 <= nums[i] <= 109",
+        "-109 <= target <= 109",
+        "Only one valid answer exists."
+    ]
 }
 ];
 
@@ -223,9 +277,33 @@ app.get('/questions', verifyToken, (req, res) => {
     }
     res.status(200).json({
         message: "Successfully fetched data.",
-        data: QUESTIONS.slice(0, limit)
+        data: QUESTIONS.slice(0, limit).map((item) => {
+            return {
+                id: item.id,
+                title: item.title,
+                difficulty: item.difficulty,
+                acceptance: item.acceptance
+            }
+        })
     });
     return;
+})
+
+app.get('/questions/:id', verifyToken, (req, res) => {
+    let id = req.params.id;
+
+    let problem = QUESTIONS.find((item) => {
+        return item.id == id;
+    })
+    if (problem) {
+        res.status(200).json(problem)
+    } else {
+        res.status(401).json({
+            errMsg: "Problem not found."
+        })
+    }
+    
+    
 })
 
 app.get("/submissions", verifyToken, (req, res) => {
