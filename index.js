@@ -332,13 +332,16 @@ app.post("/submissions", verifyToken, (req, res) => {
         res.status(401).send("Invalid details")
         return;
     }
+    
+    let result = Math.random() > 0.5? "Wrong" : "Correct";
     SUBMISSONS.push({
         email,
         questionId: params.id,
-        submission: params.submission
+        submission: params.submission,
+        result
     })
     res.status(200).json({
-        message: "Submitted!"
+        message: `Solution Submitted! ${result} answer`,
     });
 });
 
